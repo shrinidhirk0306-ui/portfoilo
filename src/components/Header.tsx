@@ -4,8 +4,8 @@ interface HeaderProps {
 }
 
 export default function Header({ onMenuOpen, isDrawerOpen }: HeaderProps) {
-  const navLinks = ['Story', 'Projects', 'Community'];
-  const socialLinks = ['Instagram', 'LinkedIn', 'GitHub'];
+  const navLinks = ['Story', 'Jobs', 'Message'];
+  const socialLinks = ['Instagram', 'TikTok', 'YouTube'];
 
   return (
     <header className="absolute inset-x-0 top-0 z-30 flex items-start justify-between px-6 pt-6 sm:px-10 sm:pt-8">
@@ -15,7 +15,7 @@ export default function Header({ onMenuOpen, isDrawerOpen }: HeaderProps) {
         className="anim-fade-up font-hn text-lg tracking-wide text-cream"
         style={{ animationDelay: '800ms' }}
       >
-        Shrinidhi
+        Marcus
       </a>
 
       {/* Desktop right cluster */}
@@ -25,7 +25,7 @@ export default function Header({ onMenuOpen, isDrawerOpen }: HeaderProps) {
           className="anim-fade-up text-sm text-cream"
           style={{ animationDelay: '900ms' }}
         >
-          2026
+          2025
         </span>
 
         {/* Navigation */}

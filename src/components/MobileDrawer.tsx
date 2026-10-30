@@ -7,8 +7,8 @@ interface MobileDrawerProps {
 }
 
 export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
-  const navLinks = ['Story', 'Projects', 'Community'];
-  const socialLinks = ['Instagram', 'LinkedIn', 'GitHub'];
+  const navLinks = ['Story', 'Jobs', 'Message'];
+  const socialLinks = ['Instagram', 'TikTok', 'YouTube'];
   const prevOverflow = useRef('');
 
   // Body scroll lock
