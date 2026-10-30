@@ -7,8 +7,21 @@ interface MobileDrawerProps {
 }
 
 export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
-  const navLinks = ['Story', 'Jobs', 'Message'];
-  const socialLinks = ['Instagram', 'TikTok', 'YouTube'];
+  const navItems = [
+    { label: 'Story', href: '#story' },
+    { label: 'Projects', href: '#projects' },
+    { label: 'Community', href: '#community' },
+    { label: 'Vision', href: '#vision' },
+    { label: 'Connect', href: '#contact' },
+  ];
+
+  const socialLinks = [
+    { label: 'GitHub', href: 'https://github.com/shrinidhirk0306-ui' },
+    { label: 'LinkedIn', href: '#' },
+    { label: 'Instagram', href: '#' },
+    { label: 'Email', href: 'mailto:shrinidhirk0306@gmail.com' },
+  ];
+
   const prevOverflow = useRef('');
 
   // Body scroll lock
@@ -31,11 +44,24 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
     [onClose],
   );
 
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    onClose();
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      setTimeout(() => {
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 300);
+    }
+  };
+
   return (
     <div className="sm:hidden">
       {/* Backdrop */}
       <div
-        className={`fixed inset-0 z-40 bg-black/40 backdrop-blur-sm transition-opacity duration-500 ${
+        className={`fixed inset-0 z-40 bg-black/60 backdrop-blur-md transition-opacity duration-500 ${
           isOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
         }`}
         onClick={handleBackdropClick}
@@ -44,7 +70,7 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
 
       {/* Panel */}
       <div
-        className={`fixed inset-y-0 right-0 z-40 w-[80%] max-w-sm bg-[#141414] px-8 py-10 transition-transform duration-[600ms] ${
+        className={`fixed inset-y-0 right-0 z-40 w-[85%] max-w-sm bg-[#0e0e0e] border-l border-cream/10 px-8 py-10 transition-transform duration-[600ms] ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         style={{
@@ -67,7 +93,7 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
         </button>
 
         {/* Content */}
-        <div className="mt-16 flex flex-col gap-10">
+        <div className="mt-14 flex flex-col gap-10">
           {/* Site Index */}
           <div>
             <h2
@@ -81,18 +107,19 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
               SITE INDEX
             </h2>
             <nav className="flex flex-col gap-3">
-              {navLinks.map((label, i) => (
+              {navItems.map((item, i) => (
                 <a
-                  key={label}
-                  href="#"
-                  className="text-4xl text-cream transition-all duration-500"
+                  key={item.label}
+                  href={item.href}
+                  onClick={(e) => handleLinkClick(e, item.href)}
+                  className="text-3xl text-cream font-light transition-all duration-500 hover:text-cream/70"
                   style={{
                     transform: isOpen ? 'translateY(0)' : 'translateY(24px)',
                     opacity: isOpen ? 1 : 0,
-                    transitionDelay: isOpen ? `${300 + i * 80}ms` : '0ms',
+                    transitionDelay: isOpen ? `${300 + i * 70}ms` : '0ms',
                   }}
                 >
-                  {label}
+                  {item.label}
                 </a>
               ))}
             </nav>
@@ -108,24 +135,36 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
                 transitionDelay: isOpen ? '500ms' : '0ms',
               }}
             >
-              FIND ME
+              CONNECT & FIND ME
             </h2>
-            <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
-              {socialLinks.map((label, i) => (
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+              {socialLinks.map((item, i) => (
                 <a
-                  key={label}
-                  href="#"
-                  className="text-cream transition-all duration-500"
+                  key={item.label}
+                  href={item.href}
+                  target={item.href.startsWith('http') ? '_blank' : undefined}
+                  rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  onClick={() => onClose()}
+                  className="text-cream/80 transition-all duration-500 hover:text-cream"
                   style={{
                     transform: isOpen ? 'translateY(0)' : 'translateY(16px)',
                     opacity: isOpen ? 1 : 0,
-                    transitionDelay: isOpen ? `${550 + i * 60}ms` : '0ms',
+                    transitionDelay: isOpen ? `${550 + i * 50}ms` : '0ms',
                   }}
                 >
-                  {label}
+                  {item.label}
                 </a>
               ))}
             </div>
+          </div>
+
+          {/* Note */}
+          <div className="pt-4 border-t border-cream/10">
+            <p className="text-xs text-cream/40 leading-relaxed font-mono">
+              B.Tech CSE (AI & ML) · Bengaluru, India
+              <br />
+              People · Ideas · Technology
+            </p>
           </div>
         </div>
       </div>

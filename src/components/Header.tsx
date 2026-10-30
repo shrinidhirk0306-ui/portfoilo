@@ -4,54 +4,79 @@ interface HeaderProps {
 }
 
 export default function Header({ onMenuOpen, isDrawerOpen }: HeaderProps) {
-  const navLinks = ['Story', 'Jobs', 'Message'];
-  const socialLinks = ['Instagram', 'TikTok', 'YouTube'];
+  const navItems = [
+    { label: 'Story', href: '#story' },
+    { label: 'Projects', href: '#projects' },
+    { label: 'Community', href: '#community' },
+    { label: 'Vision', href: '#vision' },
+    { label: 'Connect', href: '#contact' },
+  ];
+
+  const socialLinks = [
+    { label: 'GitHub', href: 'https://github.com/shrinidhirk0306-ui' },
+    { label: 'LinkedIn', href: '#' },
+    { label: 'Instagram', href: '#' },
+  ];
+
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
 
   return (
-    <header className="absolute inset-x-0 top-0 z-30 flex items-start justify-between px-6 pt-6 sm:px-10 sm:pt-8">
+    <header className="fixed inset-x-0 top-0 z-30 flex items-start justify-between px-6 pt-6 sm:px-10 sm:pt-8 transition-colors duration-300">
       {/* Brand */}
       <a
         href="#"
         className="anim-fade-up font-hn text-lg tracking-wide text-cream"
         style={{ animationDelay: '800ms' }}
       >
-        Marcus
+        Shrinidhi
       </a>
 
       {/* Desktop right cluster */}
-      <div className="hidden sm:flex items-start gap-16 lg:gap-24">
-        {/* Year */}
-        <span
-          className="anim-fade-up text-sm text-cream"
+      <div className="hidden sm:flex items-start gap-12 lg:gap-20">
+        {/* Year & Location */}
+        <div
+          className="anim-fade-up flex flex-col text-sm text-cream/70"
           style={{ animationDelay: '900ms' }}
         >
-          2025
-        </span>
+          <span className="text-cream font-medium">2026</span>
+          <span className="text-xs text-cream/50">Bengaluru, IN</span>
+        </div>
 
         {/* Navigation */}
-        <nav className="flex flex-col gap-0.5 text-sm">
-          {navLinks.map((label, i) => (
+        <nav className="flex flex-col gap-1 text-sm">
+          {navItems.map((item, i) => (
             <a
-              key={label}
-              href="#"
+              key={item.label}
+              href={item.href}
+              onClick={(e) => handleScroll(e, item.href)}
               className="anim-fade-up text-cream transition-opacity duration-300 hover:opacity-60"
-              style={{ animationDelay: `${1000 + i * 80}ms` }}
+              style={{ animationDelay: `${1000 + i * 70}ms` }}
             >
-              {label}
+              {item.label}
             </a>
           ))}
         </nav>
 
         {/* Social */}
-        <div className="flex flex-col gap-0.5 text-sm">
-          {socialLinks.map((label, i) => (
+        <div className="flex flex-col gap-1 text-sm">
+          {socialLinks.map((item, i) => (
             <a
-              key={label}
-              href="#"
+              key={item.label}
+              href={item.href}
+              target={item.href.startsWith('http') ? '_blank' : undefined}
+              rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
               className="anim-fade-up text-cream transition-opacity duration-300 hover:opacity-60"
-              style={{ animationDelay: `${1150 + i * 80}ms` }}
+              style={{ animationDelay: `${1150 + i * 70}ms` }}
             >
-              {label}
+              {item.label}
             </a>
           ))}
         </div>

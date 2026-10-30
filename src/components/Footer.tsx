@@ -6,9 +6,9 @@ export default function Footer() {
         className="anim-fade-up text-cream"
         style={{ animationDelay: '1400ms' }}
       >
-        <p>Visuals Composer</p>
-        <p>Digital Crafter</p>
-        <p>Obsessed by The Office</p>
+        <p className="font-medium text-cream">Tech &amp; AI/ML Student</p>
+        <p className="text-cream/80">Community &amp; Events</p>
+        <p className="text-cream/60">Always curious about people &amp; ideas</p>
       </div>
 
       {/* Right footer */}
@@ -16,8 +16,8 @@ export default function Footer() {
         className="anim-fade-up text-right text-cream"
         style={{ animationDelay: '1550ms' }}
       >
-        <p>A homage to</p>
-        <p>Marcus Holloway</p>
+        <p className="text-cream/80">Building at the intersection of</p>
+        <p className="font-medium text-cream">People, ideas &amp; technology</p>
       </div>
     </footer>
   );

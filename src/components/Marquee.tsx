@@ -1,5 +1,5 @@
 export default function Marquee() {
-  const text = 'Marcus\u00A0\u2014\u00A0Bennet\u00A0';
+  const text = 'Shrinidhi\u00A0\u2014\u00A0Kotagiri\u00A0';
 
   return (
     <div

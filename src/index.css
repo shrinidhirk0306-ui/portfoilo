@@ -3,10 +3,40 @@
 /* ── Tailwind v4 Theme ── */
 @theme {
   --color-cream: #efeee9;
+  --color-cream-muted: #c8c6bc;
+  --color-dark-surface: #101010;
+  --color-dark-card: #151515;
+  --color-dark-border: rgba(239, 238, 233, 0.12);
 
   --font-hn: "Helvetica Neue ME", Helvetica, Arial, sans-serif;
   --font-sans: "Helvetica Neue ME", Helvetica, Arial, sans-serif;
   --font-serif: "Helvetica Neue ME", Helvetica, Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #070707;
+  color: #efeee9;
+}
+
+::selection {
+  background-color: #efeee9;
+  color: #070707;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #070707;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(239, 238, 233, 0.2);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(239, 238, 233, 0.4);
 }
 
 /* ── Entrance Animations ── */
